@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const Layout = () => {
   return (
@@ -7,7 +8,9 @@ const Layout = () => {
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/movies">Movies</NavLink>
-          <Outlet />
+          <Suspense fallback="">
+            <Outlet />
+          </Suspense>
         </nav>
       </header>
     </div>

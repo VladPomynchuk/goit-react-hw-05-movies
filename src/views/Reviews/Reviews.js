@@ -16,16 +16,20 @@ const Reviews = () => {
 
   return (
     <div>
-      <ul>
-        {reviews.map(({ id, author, content }) => {
-          return (
-            <li key={id}>
-              <p>Author: {author}</p>
-              <p>{content}</p>
-            </li>
-          );
-        })}
-      </ul>
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map(({ id, author, content }) => {
+            return (
+              <li key={id}>
+                <p>Author: {author}</p>
+                <p>{content}</p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>Sorry, we don't have information</p>
+      )}
     </div>
   );
 };

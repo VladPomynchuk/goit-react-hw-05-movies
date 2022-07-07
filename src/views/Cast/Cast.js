@@ -17,11 +17,15 @@ const Cast = () => {
 
   return (
     <div>
-      <ul>
-        {cast.map(el => {
-          return <CastListItem key={el.id} data={el} />;
-        })}
-      </ul>
+      {cast ? (
+        <ul>
+          {cast.map(el => {
+            return <CastListItem key={el.id} data={el} />;
+          })}
+        </ul>
+      ) : (
+        <p>Sorry, we don't have information</p>
+      )}
     </div>
   );
 };

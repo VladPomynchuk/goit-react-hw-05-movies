@@ -47,5 +47,19 @@ export const getFilmReviews = async filmId => {
     toast.error('Ups... Something went wrong :(');
   }
 };
-// https://api.themoviedb.org/3/movie/{movie_id}?api_key=6b956d9320e8e098b01748da89295179&language=en-US
-// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=6b956d9320e8e098b01748da89295179&language=en-US
+
+export const getFilmByQuery = async query => {
+  try {
+    const response = await axios.get(`/search/movie`, {
+      params: {
+        ...params.params,
+        query: query,
+      },
+    });
+
+    const filmsByQuery = response.data.results;
+    return filmsByQuery;
+  } catch (error) {
+    toast.error('Ups... Something went wrong :(');
+  }
+};

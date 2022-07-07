@@ -6,7 +6,7 @@ const Home = () => {
 
   return (
     <div>
-      <FilmList films={trendingFilms} />
+      <FilmList films={trendingFilms} title="Trending films" />
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 import { getFilmById } from 'service/api';
 
 const MovieDetails = () => {
+  const location = useLocation();
   const { movieId } = useParams();
   const [filmDetails, setАilmDetails] = useState('');
 
@@ -19,6 +20,7 @@ const MovieDetails = () => {
 
   return (
     <>
+      <Link to={location?.state?.from ?? '/'}>Go back</Link>
       {filmDetails && (
         <div>
           <section>

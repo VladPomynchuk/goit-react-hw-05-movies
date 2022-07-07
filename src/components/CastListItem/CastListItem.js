@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CastListItem = ({ data }) => {
   const { profile_path, character, name } = data;
@@ -12,6 +13,14 @@ const CastListItem = ({ data }) => {
       <p>Character:{character}</p>
     </li>
   );
+};
+
+CastListItem.propTypes = {
+  data: PropTypes.shape({
+    profile_path: PropTypes.string.isRequired,
+    character: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
 };
 
 export default CastListItem;
