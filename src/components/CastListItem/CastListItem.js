@@ -17,7 +17,7 @@ const CastListItem = ({ data }) => {
 
 CastListItem.propTypes = {
   data: PropTypes.shape({
-    profile_path: PropTypes.string.isRequired,
+    profile_path: PropTypes.string,
     character: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),
