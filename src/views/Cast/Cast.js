@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFilmCast } from 'service/api';
 import CastListItem from 'components/CastListItem';
+import { CastList, StyledErrorMessage } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -18,13 +19,15 @@ const Cast = () => {
   return (
     <div>
       {cast ? (
-        <ul>
+        <CastList>
           {cast.map(el => {
             return <CastListItem key={el.id} data={el} />;
           })}
-        </ul>
+        </CastList>
       ) : (
-        <p>Sorry, we don't have information</p>
+        <StyledErrorMessage>
+          Sorry, we don't have information
+        </StyledErrorMessage>
       )}
     </div>
   );

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFilmReviews } from 'service/api';
+import { ReviewsList, ReviewsAuthor, ReviewsText } from './Reviews.styled';
+import { StyledErrorMessage } from 'views/Cast/Cast.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -17,18 +19,20 @@ const Reviews = () => {
   return (
     <div>
       {reviews.length > 0 ? (
-        <ul>
+        <ReviewsList>
           {reviews.map(({ id, author, content }) => {
             return (
               <li key={id}>
-                <p>Author: {author}</p>
-                <p>{content}</p>
+                <ReviewsAuthor>Author: {author}</ReviewsAuthor>
+                <ReviewsText>{content}</ReviewsText>
               </li>
             );
           })}
-        </ul>
+        </ReviewsList>
       ) : (
-        <p>Sorry, we don't have information</p>
+        <StyledErrorMessage>
+          Sorry, we don't have information
+        </StyledErrorMessage>
       )}
     </div>
   );

@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CastItem } from './CastListItem.styled';
 
 const CastListItem = ({ data }) => {
   const { profile_path, character, name } = data;
 
   return (
-    <li>
+    <CastItem>
       {profile_path && (
         <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt="" />
       )}
       <p>{name}</p>
       <p>Character:{character}</p>
-    </li>
+    </CastItem>
   );
 };
 

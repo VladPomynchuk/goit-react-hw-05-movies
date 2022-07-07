@@ -1,11 +1,25 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { getFilmById } from 'service/api';
+import { Section } from 'components/App.styled';
+import {
+  GoBackLink,
+  Image,
+  FilmDetailsbox,
+  FilmInfoBox,
+  PageTitle,
+  FilmText,
+  FilmSubTitle,
+  StyledLink,
+  LinkBox,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const location = useLocation();
   const { movieId } = useParams();
   const [filmDetails, setАilmDetails] = useState('');
+
+  console.log(location);
 
   useEffect(() => {
     getFilmById(movieId).then(res => {
@@ -20,33 +34,40 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={location?.state?.from ?? '/'}>Go back</Link>
+      <GoBackLink to={location?.state?.from ?? '/'}>Go back</GoBackLink>
       {filmDetails && (
         <div>
-          <section>
-            <div>
-              <img
+          <Section>
+            <FilmDetailsbox>
+              <Image
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 alt="poster"
               />
-              <div>
-                <h2>
+              <FilmInfoBox>
+                <PageTitle>
                   {title} ({release_date.substring(0, 4)})
-                </h2>
-                <p>User Score: {vote_average * 10}%</p>
-                <h3>Overview</h3>
-                <p>{overview}</p>
-                <h3>Genres</h3>
-                <p>{genres.map(genre => genre.name).join(' ')}</p>
-              </div>
-            </div>
-          </section>
-          <section>
-            <h2>Additional information</h2>
-            <Link to={`cast`}>cast</Link>
-            <Link to={`reviews`}>reviews</Link>
-          </section>
-          <Outlet />
+                </PageTitle>
+                <FilmText>User Score: {vote_average * 10}%</FilmText>
+                <FilmSubTitle>Overview</FilmSubTitle>
+                <FilmText>{overview}</FilmText>
+                <FilmSubTitle>Genres</FilmSubTitle>
+                <FilmText>{genres.map(genre => genre.name).join(' ')}</FilmText>
+              </FilmInfoBox>
+            </FilmDetailsbox>
+          </Section>
+          <Section>
+            <PageTitle>Additional information</PageTitle>
+            <LinkBox>
+              <StyledLink state={{ from: location.state.from }} to={`cast`}>
+                Cast
+              </StyledLink>
+              <StyledLink state={{ from: location.state.from }} to={`reviews`}>
+                Reviews
+              </StyledLink>
+            </LinkBox>
+
+            <Outlet />
+          </Section>
         </div>
       )}
     </>

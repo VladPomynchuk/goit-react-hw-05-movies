@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
+import { FormConatiner } from './SearchForm.styled';
 
 export const initialValues = {
   query: '',
@@ -17,7 +18,7 @@ const SearchForm = ({ setSearchParams }) => {
   };
 
   return (
-    <div>
+    <FormConatiner>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
@@ -28,7 +29,7 @@ const SearchForm = ({ setSearchParams }) => {
           <button type="submit">Search</button>
         </Form>
       </Formik>
-    </div>
+    </FormConatiner>
   );
 };
 
