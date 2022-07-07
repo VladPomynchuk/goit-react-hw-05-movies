@@ -4,15 +4,15 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { FormConatiner } from './SearchForm.styled';
 
-export const initialValues = {
-  query: '',
-};
-
 const schema = yup.object({
   query: yup.string().required(),
 });
 
-const SearchForm = ({ setSearchParams }) => {
+const SearchForm = ({ setSearchParams, searchParams }) => {
+  const initialValues = {
+    query: `${searchParams.get('query') ?? ''}`,
+  };
+
   const handleSubmit = value => {
     setSearchParams({ query: value.query.trim() });
   };
@@ -35,6 +35,7 @@ const SearchForm = ({ setSearchParams }) => {
 
 SearchForm.propTypes = {
   setSearchParams: PropTypes.func.isRequired,
+  searchParams: PropTypes.object,
 };
 
 export default SearchForm;

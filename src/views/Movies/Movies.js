@@ -25,7 +25,10 @@ const Movies = () => {
 
   return (
     <div>
-      <SearchForm setSearchParams={setSearchParams} />
+      <SearchForm
+        setSearchParams={setSearchParams}
+        searchParams={searchParams}
+      />
 
       {filmsByQuery.length > 0 && <FilmList films={filmsByQuery} />}
     </div>
